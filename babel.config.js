@@ -1,3 +1,5 @@
+console.log("BABEL.CONFIG.JS RUNNING"); 
+
 module.exports = {
   presets: [
     ['@babel/preset-env', {

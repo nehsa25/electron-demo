@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+console.log("WEBPACK.CONFIG.JS RUNNING"); 
+
 module.exports = {  
   target: 'electron-renderer', 
   entry: './src/index.js', 

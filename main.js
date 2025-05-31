@@ -1,4 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path'); 
+
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
@@ -9,8 +11,14 @@ function createWindow() {
         },
     });
 
-    win.loadFile('dist/index.html');
+    if (process.env.NODE_ENV === 'development') {
+        win.loadURL('http://localhost:9000');
+        win.webContents.openDevTools();
+    } else {
+        win.loadFile(path.join(__dirname, 'dist', 'index.html'));
+    }
 }
+
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
@@ -28,4 +36,3 @@ app.on('activate', () => {
 ipcMain.on('request-message', (event) => {
     event.reply('message', 'Hello from the main process!');
 });
-
